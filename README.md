@@ -448,8 +448,15 @@ chmod +x scripts/smart_start.sh && ./scripts/smart_start.sh
 # 1. 升级pip (重要！避免安装错误)
 python -m pip install --upgrade pip
 
-# 2. 安装依赖
-pip install -e .
+# 2. 安装依赖（推荐使用锁定版本，安装速度最快）
+pip install -r requirements-lock.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install -e . --no-deps
+
+# 或一步安装（会重新解析依赖，速度较慢）
+# pip install -e . -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+# 💡 国内用户推荐使用镜像加速（详见 docs/installation-mirror.md）
+# ⚠️ Windows 用户如遇到 PyYAML 编译错误，使用锁定版本可避免此问题
 
 # 3. 启动应用
 python start_web.py
@@ -605,9 +612,10 @@ source env/bin/activate
 python -m pip install --upgrade pip
 
 # 4. 安装所有依赖
-pip install -r requirements.txt
-#或者使用pip install -e .
 pip install -e .
+
+# 💡 国内用户推荐使用镜像加速（详见 docs/installation-mirror.md）
+# pip install -e . -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 # 注意：requirements.txt已包含所有必需依赖：
 # - 数据库支持 (MongoDB + Redis)
@@ -1004,6 +1012,9 @@ source env/bin/activate
 
 # 2. 安装项目到虚拟环境（重要！）
 pip install -e .
+
+# 💡 国内用户推荐使用镜像加速（详见 docs/installation-mirror.md）
+# pip install -e . -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 # 3. 启动Web管理界面
 # 方法1：使用项目启动脚本（推荐）
